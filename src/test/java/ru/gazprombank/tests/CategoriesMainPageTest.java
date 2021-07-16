@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static java.util.Arrays.asList;
 
-public class CategoriesMainPageTest {
+public class CategoriesMainPageTest extends TestBase {
     @Test
     void verifyTitleOfCategory() {
         step("Open home page", () -> {

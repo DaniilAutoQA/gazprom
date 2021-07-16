@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ru.gazprombank.config.Project;
 import ru.gazprombank.helpers.AllureAttachments;
+import ru.gazprombank.helpers.Attach;
 import ru.gazprombank.helpers.DriverSettings;
 import ru.gazprombank.helpers.DriverUtils;
 
@@ -19,24 +20,30 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class TestBase {
     @BeforeAll
     static void setUp() {
+        // DriverSettings.configure();
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Configuration.startMaximized=true;
+        Configuration.startMaximized = true;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
-       // DriverSettings.configure();
     }
 
     public static String getSessionId() {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
 
-    @AfterEach
-    public void addAttachments() {
-        String sessionId = DriverUtils.getSessionId();
-        AllureAttachments.addScreenshotAs("Last screenshot");
-        AllureAttachments.addPageSource();
-//        AllureAttachments.attachNetwork(); // todo
-        AllureAttachments.addBrowserConsoleLogs();
-        closeWebDriver();
 
+
+
+    @AfterEach
+    public void tearDown() {
+        String sessionId = getSessionId();
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        closeWebDriver();
+        Attach.addVideo(sessionId);
     }
 }
