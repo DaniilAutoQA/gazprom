@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import ru.gazprombank.config.Project;
 import ru.gazprombank.helpers.AllureAttachments;
 import ru.gazprombank.helpers.DriverSettings;
 import ru.gazprombank.helpers.DriverUtils;
@@ -19,6 +20,7 @@ public class TestBase {
     @BeforeAll
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Configuration.startMaximized=true;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
        // DriverSettings.configure();
     }

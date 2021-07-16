@@ -13,20 +13,20 @@ import static java.util.Arrays.asList;
 public class CategoriesMainPageTest {
     @Test
     void verifyTitleOfCategory() {
-        step("Открываем главную страницу банка", () -> {
+        step("Open home page", () -> {
             open("https://www.gazprombank.ru/");
         });
-        step("Проверяем наличие и название секции 'Выберите категорию'", () -> {
+        step("Verify section", () -> {
             $(".nr-categories__title").should(visible);
-            $(".nr-categories__title").shouldHave(text("Выберите категорию"));
+            $(".nr-categories__title").shouldHave(text("Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ"));
         });
     }
 
     @Test
     void verifyListOfCategories(){
-        step("Проверка списка категорий", () -> {
+        step("РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РєР°С‚РµРіРѕСЂРёР№", () -> {
           open("https://www.gazprombank.ru/");
-          $$(".nr-categories-tabs__el").shouldHave(size(6), texts(asList("Популярное","Накопления", "Ипотека","Автолюбителям", "Акции", "Устойчивое развитие")));
+          $$(".nr-categories-tabs__el").shouldHave(size(6), texts(asList("РџРѕРїСѓР»СЏСЂРЅРѕРµ","РќР°РєРѕРїР»РµРЅРёСЏ", "РРїРѕС‚РµРєР°","РђРІС‚РѕР»СЋР±РёС‚РµР»СЏРј", "РђРєС†РёРё", "РЈСЃС‚РѕР№С‡РёРІРѕРµ СЂР°Р·РІРёС‚РёРµ")));
         });
     }
 }
