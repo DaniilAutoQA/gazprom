@@ -20,22 +20,28 @@ public class DepositTest extends TestBase {
         step("Выбираем вклад 'Ваш Успех'", () -> {
             $("[href='/personal/increase/deposits/detail/6049/']").click();
         });
-        step("Проверяем переход на страницу 'Вклад Ваш Успех'", () -> {
-            //      assertThat(title()).isEqualTo("Вклад «Ваш успех»");
-        });
         step("Перейти к рассчету дохода", () -> {
             $$(".nn-btn__text ").find(text("Рассчитать доход")).click();
         });
         step("Ввести данные для рассчета", () -> {
             $(".nn-range__value").setValue("9000000");
+        });
+        step("Снять чекбокс 'Капитализация'", () -> {
             $(".nn-checkbox").click();
         });
         step("Проверка рассчета", () -> {
-            $(".js-nn-calc-rSum").shouldHave(text("9 494 092"));
-            $(".js-nn-calc-rProfit").shouldHave(text("494 092"));
-            $(".js-nn-calc-rRate").shouldHave(text("5.46"));
-            $(".js-nn-calc-effective").shouldNot(visible);
+            step("Сумма в конце срока должна быть  9 494 092", () ->{
+                $(".js-nn-calc-rSum").shouldHave(text("9 494 092"));
+            });
+            step("Доход должен быть 494 092", () ->{
+                $(".js-nn-calc-rProfit").shouldHave(text("494 092"));
+            });
+            step("Процентная ставка должна быть 5.46%", () ->{
+                $(".js-nn-calc-rRate").shouldHave(text("5.46"));
+            });
+            step("Эффективная ставка не должна отображаться", () ->{
+                $(".js-nn-calc-effective").shouldNot(visible);
+            });
         });
-
     }
 }

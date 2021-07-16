@@ -13,20 +13,18 @@ import static java.util.Arrays.asList;
 public class CategoriesMainPageTest extends TestBase {
     @Test
     void verifyTitleOfCategory() {
-        step("Open home page", () -> {
+        step("Открываем главную страницу Газпром банка", () -> {
             open("https://www.gazprombank.ru/");
         });
-        step("Verify section", () -> {
-            $(".nr-categories__title").should(visible);
-            $(".nr-categories__title").shouldHave(text("Выберите категорию"));
-        });
-    }
+        step("Проверка секции выбора категорий", () -> {
+            step("Проверить отображение и название секции 'Выберите категорию'", () -> {
+                $(".nr-categories__title").should(visible);
+                $(".nr-categories__title").shouldHave(text("Выберите категорию"));
+            });
+            step("Проверить наименование доступных категорий", () -> {
+                $$(".nr-categories-tabs__el").shouldHave(size(6), texts(asList("Популярное", "Накопления", "Ипотека", "Автолюбителям", "Акции", "Устойчивое развитие")));
+            });
 
-    @Test
-    void verifyListOfCategories(){
-        step("Проверка списка категорий", () -> {
-          open("https://www.gazprombank.ru/");
-          $$(".nr-categories-tabs__el").shouldHave(size(6), texts(asList("Популярное","Накопления", "Ипотека","Автолюбителям", "Акции", "Устойчивое развитие")));
         });
     }
 }
