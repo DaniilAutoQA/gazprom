@@ -19,8 +19,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class TestBase {
     @BeforeAll
-    static void setUp() {
-        // DriverSettings.configure();
+    static void setup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.startMaximized = true;
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -33,9 +32,6 @@ public class TestBase {
     public static String getSessionId() {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
-
-
-
 
     @AfterEach
     public void tearDown() {
