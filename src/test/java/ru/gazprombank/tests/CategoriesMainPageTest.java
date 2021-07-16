@@ -13,10 +13,10 @@ import static java.util.Arrays.asList;
 public class CategoriesMainPageTest extends TestBase {
     @Test
     void verifyTitleOfCategory() {
-        step("Открываем главную страницу Газпром банка", () -> {
+        step("Открыть главную страницу Газпром банка", () -> {
             open("https://www.gazprombank.ru/");
         });
-        step("Проверка секции выбора категорий", () -> {
+        step("Проверить секцию выбора категорий", () -> {
             step("Проверить отображение и название секции 'Выберите категорию'", () -> {
                 $(".nr-categories__title").should(visible);
                 $(".nr-categories__title").shouldHave(text("Выберите категорию"));

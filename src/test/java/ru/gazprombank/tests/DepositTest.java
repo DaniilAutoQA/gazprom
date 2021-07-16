@@ -11,13 +11,13 @@ public class DepositTest extends TestBase {
 
     @Test
     void verifyDeposits() {
-        step("Открываем главную страницу Газпром банка", () -> {
+        step("Открыть главную страницу Газпром банка", () -> {
             open("https://www.gazprombank.ru/");
         });
-        step("Выбираем категорию Накопления", () -> {
+        step("Выбирть категорию Накопления", () -> {
             $$(".nr-categories-tabs__tab").find(text("Накопления")).scrollTo().click();
         });
-        step("Выбираем вклад 'Ваш Успех'", () -> {
+        step("Выбирать вклад 'Ваш Успех'", () -> {
             $("[href='/personal/increase/deposits/detail/6049/']").click();
         });
         step("Перейти к рассчету дохода", () -> {
@@ -29,7 +29,7 @@ public class DepositTest extends TestBase {
         step("Снять чекбокс 'Капитализация'", () -> {
             $(".nn-checkbox").click();
         });
-        step("Проверка рассчета", () -> {
+        step("Проверить рассчет", () -> {
             step("Сумма в конце срока должна быть  9 494 092", () ->{
                 $(".js-nn-calc-rSum").shouldHave(text("9 494 092"));
             });

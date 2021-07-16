@@ -53,6 +53,7 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Test) {
     systemProperties(System.getProperties())
+    systemProperty("browser", System.getProperty("browser", "chrome"))
     useJUnitPlatform()
 //    systemProperty "chromeoptions.prefs", "intl.accept_languages=en"
 
