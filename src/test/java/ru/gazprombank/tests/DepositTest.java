@@ -11,7 +11,7 @@ public class DepositTest extends TestBase {
 
     @Test
     void verifyDeposits() {
-        step("Открываем главную страницу банка", () -> {
+        step("Открываем главную страницу Газпром банка", () -> {
             open("https://www.gazprombank.ru/");
         });
         step("Выбираем категорию Накопления", () -> {
