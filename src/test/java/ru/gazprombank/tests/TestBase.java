@@ -19,7 +19,8 @@ public class TestBase {
     @BeforeAll
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        DriverSettings.configure();
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+       // DriverSettings.configure();
     }
 
     public static String getSessionId() {
@@ -33,8 +34,7 @@ public class TestBase {
         AllureAttachments.addPageSource();
 //        AllureAttachments.attachNetwork(); // todo
         AllureAttachments.addBrowserConsoleLogs();
-
-        Selenide.closeWebDriver();
+        closeWebDriver();
 
     }
 }
